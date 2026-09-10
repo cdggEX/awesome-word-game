@@ -9,8 +9,13 @@
 <body>
     <div class="container">
         <h1 style="text-decoration:underline">Last word</h1>
-        <h2 id="player-num"></h2>
-        <h3 id="word-input"></h3>
+        <div style="display: flex; flex-direction:column; width:25%; gap:1rem" >
+            <h2 id="player-num">Player 1, enter the first word:</h2>
+            <h3 id="previous-word"></h3>
+            <textarea id ="word-input" placeholder="Enter a word"></textarea>
+            <button id="submit-btn">Submit word</button>
+            <button id="undo-btn" style="width:25%">Undo</button>
+        </div>
     </div>
     
 </body>
