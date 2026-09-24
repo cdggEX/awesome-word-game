@@ -1,4 +1,3 @@
-
 var player = 1;
 const playerheader = document.getElementById("player-num")
 const wordinput = document.getElementById("word-input");
@@ -10,21 +9,21 @@ const worddisplay = document.getElementById("previous-word");
 const undobutton = document.getElementById("undo-btn");
 const alertp = document.getElementById("alert")
 
-undobutton.addEventListener("click", function() {
+undo = function() {
     if (words.length === 0) {
-        createalert("No words to undo.");
-        return;
+        createalert("No words to undo.")
+        return
     } 
     words.pop();
     if (words.length === 0) {
-        previousword = null;
+        previousword = null
     } else {
-        previousword = words[words.length - 1];
+        previousword = words[words.length - 1]
     }
     worddisplay.innerHTML = "Previous word: " + previousword;
-    playerheader.innerHTML = "Player " + (player === 1 ? 2 : 1) + ", enter a word that starts with '" + (previousword ? previousword.slice(-1) : '') + "':";
-    player = player === 1 ? 2 : 1;
-});
+    playerheader.innerHTML = "Player " + (player === 1 ? 2 : 1) + ", enter a word that starts with '" + (previousword ? previousword.slice(-1) : '') + "':"
+    player = player === 1 ? 2 : 1
+}
 
 submitword = function() {
     currentword = wordinput.value.replace(/\n/g, '').toLowerCase();
@@ -45,15 +44,22 @@ submitword = function() {
     wordinput.focus()
 }
 
+undobutton.addEventListener("click", undo);
+
 submitbutton.addEventListener("click", submitword)
-wordinput.addEventListener("keydown", (event) => {
+
+document.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
+        event.preventDefault()
         submitword()
     }
 })
 
-function logKey(e) {
-  console.log(`${e.code}`);
+document.onkeydown = function(e) {
+    if (e.ctrlKey && e.key === 'z') {
+        e.preventDefault()
+        undo()
+    }
 }
 
 function createalert(text) {
