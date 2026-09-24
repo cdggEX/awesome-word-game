@@ -12,10 +12,11 @@
     </nav>
     <div class="container">
         <h1 style="text-decoration:underline">Last word</h1>
-        <div style="display: flex; flex-direction:column; width:25%; gap:1rem" >
+        <div style="display: flex; flex-direction:column; width:25%; gap:0.5rem" >
             <h2 id="player-num">Player 1, enter the first word:</h2>
             <h3 id="previous-word"></h3>
-            <textarea id ="word-input" placeholder="Enter a word"></textarea>
+            <label id = "alert" style="color:rgb(245, 5, 5)"></label>    
+            <input type = "text" id ="word-input" placeholder="Enter a word"></input>
             <button id="submit-btn">Submit word</button>
             <button id="undo-btn" style="width:25%">Undo</button>
         </div>

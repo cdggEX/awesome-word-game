@@ -8,10 +8,11 @@ var words = [];
 const submitbutton = document.getElementById("submit-btn")
 const worddisplay = document.getElementById("previous-word");
 const undobutton = document.getElementById("undo-btn");
+const alertp = document.getElementById("alert")
 
 undobutton.addEventListener("click", function() {
     if (words.length === 0) {
-        alert("No words to undo.");
+        createalert("No words to undo.");
         return;
     } 
     words.pop();
@@ -25,14 +26,13 @@ undobutton.addEventListener("click", function() {
     player = player === 1 ? 2 : 1;
 });
 
-submitbutton.addEventListener("click", function() {
+submitword = function() {
     currentword = wordinput.value.replace(/\n/g, '').toLowerCase();
     if (currentword === "") {
-        alert("Please enter a word.");
+        createalert("Please enter a word.");
         return;
     } else if (previousword != null && currentword.slice(0,1) !== previousword.slice(-1)) {
-        alert("The word does not start with the correct letter.");
-        
+        createalert("The word does not start with the correct letter.");
         return;
     }
     words.push(currentword);
@@ -42,7 +42,27 @@ submitbutton.addEventListener("click", function() {
     wordinput.value = "";
     playerheader.innerHTML = "Player " + (player === 1 ? 2 : 1) + ", enter a word that starts with '" + currentword.slice(-1) + "':";
     player = player === 1 ? 2 : 1;
+    wordinput.focus()
+}
 
+submitbutton.addEventListener("click", submitword)
+wordinput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        submitword()
+    }
 })
+
+function logKey(e) {
+  console.log(`${e.code}`);
+}
+
+function createalert(text) {
+    alertp.innerHTML = text
+    setTimeout(function() {
+        alertp.innerHTML = ""
+    }, 3000)
+
+}
+
 
 
