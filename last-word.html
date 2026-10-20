@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
     <title>Document</title>
     <script src="last-word.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Slabo+13px&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1 style="text-decoration:underline">Last word</h1>
-        <div style="display: flex; flex-direction:column; width:25%; gap:1rem" >
+        <div class="main-body">
+            <h1 style="text-decoration:underline">Last word</h1>
             <h2 id="player-num">Player 1, enter the first word:</h2>
             <h3 id="previous-word"></h3>
-            <textarea id ="word-input" placeholder="Enter a word"></textarea>
-            <button id="submit-btn">Submit word</button>
-            <button id="undo-btn" style="width:25%">Undo</button>
+            <h3 id="error" class="hidden-error">hehe im a mew mew girl!!! omgg :3 :v</h3>
+            <input type= "text" id="word-input" class ="word-input" placeholder="Enter a word"></input>
+            <button id="submit-btn" class="submit-btn">Submit word</button>
+            <button id="undo-btn" class="undo-btn">Undo</button>
         </div>
     </div>
     

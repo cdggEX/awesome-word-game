@@ -11,7 +11,7 @@ const undobutton = document.getElementById("undo-btn");
 
 undobutton.addEventListener("click", function() {
     if (words.length === 0) {
-        alert("No words to undo.");
+        showError("No words to undo.");
         return;
     } 
     words.pop();
@@ -25,16 +25,31 @@ undobutton.addEventListener("click", function() {
     player = player === 1 ? 2 : 1;
 });
 
-submitbutton.addEventListener("click", function() {
+document.addEventListener("keydown", function(e) {
+    e.preventdefault()
+})
+
+document.addEventListener("keyup", function(e) {
+    
+    if (e.key === "Enter") {
+        submit()
+    }
+    e.preventdefault()
+})
+
+submitbutton.addEventListener("click", (e) => submit(e))
+
+function submit(e) {
     currentword = wordinput.value.replace(/\n/g, '').toLowerCase();
     if (currentword === "") {
-        alert("Please enter a word.");
+        showError("Please enter a word.");
         return;
     } else if (previousword != null && currentword.slice(0,1) !== previousword.slice(-1)) {
-        alert("The word does not start with the correct letter.");
+        showError("The word does not start with the correct letter.");
         
         return;
     }
+
     words.push(currentword);
     console.log(words);
     previousword = currentword;
@@ -42,7 +57,19 @@ submitbutton.addEventListener("click", function() {
     wordinput.value = "";
     playerheader.innerHTML = "Player " + (player === 1 ? 2 : 1) + ", enter a word that starts with '" + currentword.slice(-1) + "':";
     player = player === 1 ? 2 : 1;
+    e.preventdefault()
 
-})
+}
+
+function showError(text) {
+    const error = document.getElementById("error")
+    error.classList.remove("hidden-error")
+    error.classList.add("shown-error")
+    setTimeout(() => {
+        error.classList.remove("shown-error")
+        error.classList.add("hidden-error")
+    }, 3000);
+    error.textContent = text
+}
 
 
