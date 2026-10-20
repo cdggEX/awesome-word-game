@@ -7,7 +7,9 @@
 }
 
 body {
-    background-color: #d7b4f3
+    background-color: #d7b4f3;
+    background:linear-gradient(120deg, #f7d2ff, #f7d2ff);
+    height: 1vw;
 }
 
 .container {
@@ -50,18 +52,26 @@ button {
     background-color: #ffafe3;
     border-radius: 10px;
     border-color: rgb(0, 0, 0);
+    border-width: 1px;
     color:black;
+    border-style: solid;
+    box-shadow: 2px 2px black;
 }
 
 
 button:hover {
-    background-color: rgb(226, 82, 82);
+    background-color: #ffb1c2;
+    
 }
-button::picker
 
 .word-input {
-    width: 80%;
-    background-color:rgb(148, 145, 145);
+    width: 50%;
+    background-color: #ffc9ec;
+    border-radius: 20px;
+    height:50px;
+    color: grey;
+    font-size: 30px;
+    border-style: solid;
 }
 
 .throwaway-link {

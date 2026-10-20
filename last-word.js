@@ -20,8 +20,8 @@ undobutton.addEventListener("click", function() {
     } else {
         previousword = words[words.length - 1];
     }
-    worddisplay.innerHTML = "Previous word: " + previousword;
-    playerheader.innerHTML = "Player " + (player === 1 ? 2 : 1) + ", enter a word that starts with '" + (previousword ? previousword.slice(-1) : '') + "':";
+    worddisplay.textContent = "Previous word: " + previousword;
+    playerheader.textContent = "Player " + (player === 1 ? 2 : 1) + ", enter a word that starts with '" + (previousword ? previousword.slice(-1) : '') + "':";
     player = player === 1 ? 2 : 1;
 });
 
@@ -53,9 +53,9 @@ function submit(e) {
     words.push(currentword);
     console.log(words);
     previousword = currentword;
-    worddisplay.innerHTML = "Previous word: " + currentword;
+    worddisplay.textContent = "Previous word: " + currentword;
     wordinput.value = "";
-    playerheader.innerHTML = "Player " + (player === 1 ? 2 : 1) + ", enter a word that starts with '" + currentword.slice(-1) + "':";
+    playerheader.textContent = "Player " + (player === 1 ? 2 : 1) + ", enter a word that starts with '" + currentword.slice(-1) + "':";
     player = player === 1 ? 2 : 1;
     e.preventdefault()
 
