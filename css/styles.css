@@ -1,20 +1,25 @@
 .hidden-error {
-    color: white;
+    color: #d7b4f3;
 }
 
 .shown-error {
     color: red;
 }
 
+body {
+    background-color: #d7b4f3
+}
+
 .container {
-    font-family: "Slabo 13px", serif;
-    font-weight: 400;
-    font-style: normal;
     display: flex; 
     justify-content: center;
 }
 
+
 .main-body {
+    font-family: "EB Garamond", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
     width:500px; 
     gap:0.5rem;
     display: flex;
@@ -25,29 +30,44 @@
 
 
 .undo-btn {
+    font-family: "EB Garamond", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
     width: 40%;
     height: 40px;
 }
 
 .submit-btn {
+    font-size:17px;
     width: 60%;
     height: 80px;
-    background-color: rgb(148, 145, 145);
-    border-radius: 10px;
-    border-style: groove;
-    color:white;
-
 }
+
+button {
+    font-family: "EB Garamond", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    background-color: #ffafe3;
+    border-radius: 10px;
+    border-color: rgb(0, 0, 0);
+    color:black;
+}
+
+
+button:hover {
+    background-color: rgb(226, 82, 82);
+}
+button::picker
 
 .word-input {
-    width: 80%
+    width: 80%;
+    background-color:rgb(148, 145, 145);
 }
 
-.slabo-13px-regular {
-  font-family: "Slabo 13px", serif;
-  font-weight: 400;
-  font-style: normal;
+.throwaway-link {
+    font-size: 2px;
 }
+
 
 
 
