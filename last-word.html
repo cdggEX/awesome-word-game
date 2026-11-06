@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LastWord</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Document</title>
     <script src="last-word.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-    </nav>
     <div class="container">
-        <h1 style="text-decoration:underline">Last word</h1>
-        <div style="display: flex; flex-direction:column; width:25%; gap:0.5rem" >
+        <div class="main-body">
+            <h1 style="text-decoration:underline">Last word</h1>
             <h2 id="player-num">Player 1, enter the first word:</h2>
             <h3 id="previous-word"></h3>
-            <label id = "alert" style="color:rgb(245, 5, 5)"></label>    
-            <input type = "text" id ="word-input" placeholder="Enter a word"></input>
-            <button id="submit-btn">Submit word</button>
-            <button id="undo-btn" style="width:25%">Undo</button>
+            <h3 id="error" class="hidden-error">hehe im a mew mew girl!!! omgg :3 :v</h3>
+            <input type= "text" id="word-input" class ="word-input"></input>
+            <button id="submit-btn" class="submit-btn">Submit word</button>
+            <button id="undo-btn" class="undo-btn">Undo</button>
         </div>
     </div>
+    <a href="https://mycolor.space/?hex=%23D7B4F3&sub=1" class="throwaway-link">gradient</a>
     
 </body>
 </html>
