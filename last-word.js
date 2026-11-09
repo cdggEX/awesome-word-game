@@ -1,4 +1,5 @@
 
+
 var player = 1;
 const playerheader = document.getElementById("player-num")
 const wordinput = document.getElementById("word-input");
@@ -8,12 +9,28 @@ var words = [];
 const submitbutton = document.getElementById("submit-btn")
 const worddisplay = document.getElementById("previous-word");
 const undobutton = document.getElementById("undo-btn");
+const pinkimage = document.getElementById("pink-img")
+const error = document.getElementById("error")  
+
+var streakcounter = 0
+
+//Images of pink
+const pinkwink = 'public/images/164px-Pink_face_wink.gif.webp'
+const pinkhappycry = 'public/images/Pink_face_overjoyed.gif'
+const pinkconcerned = 'public/images/Pink_face_concerned.gif'
+const pinkangy = 'public/images/Pink_face_angry.png'
+const pinkhappy = 'public/images/Pink_face_happy.gif'
+const pinksadcry = 'public/images/Pink_face_cry.gif'
+
 
 undobutton.addEventListener("click", function() {
     if (words.length === 0) {
-        showError("No words to undo.");
+        setPink(pinkangy, "You cant undo any more!! HAHAHAHAHA")
         return;
     } 
+    else {
+        setPink(pinkconcerned, "Why'd you undo... I liked that word...")
+    }
     words.pop();
     if (words.length === 0) {
         previousword = null;
@@ -30,7 +47,6 @@ document.addEventListener("keydown", function(e) {
 })
 
 document.addEventListener("keyup", function(e) {
-    
     if (e.key === "Enter") {
         submit()
     }
@@ -42,13 +58,52 @@ submitbutton.addEventListener("click", (e) => submit(e))
 function submit(e) {
     currentword = wordinput.value.replace(/\n/g, '').toLowerCase();
     if (currentword === "") {
-        showError("Please enter a word.");
+        setPink(pinkangy, "Enter a word!!!")
         return;
     } else if (previousword != null && currentword.slice(0,1) !== previousword.slice(-1)) {
-        showError("The word does not start with the correct letter.");
-        
+        setPink(pinkconcerned, "Come on... That word doesn't start with the right letter")
+        streakcounter = 0
         return;
     }
+
+    //Retrieve word category
+    fetch(`https://wordsapiv1.p.mashape.com/words/word`)
+        .then(res => res.json())
+        .then(data => console.log(data))
+
+    const word = "documentation";
+    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+        .then(response => response.json())
+        .then(data => console.log(data));
+
+    switch (streakcounter) {
+        case 0:
+            setPink(pinkwink, "Nice word!")
+            break
+        case 1:
+            setPink(pinkwink, "Epic word!!")
+            break
+        case 2:
+            setPink(pinkhappy, "Omg good job!!")
+            break
+        case 3:
+            setPink(pinkhappy, "Incredible word!!!")
+            break
+        case 4:
+            setPink(pinkhappycry, "You're so cracked!!!!")
+            break
+        case 5:
+            setPink(pinkconcerned, "I'm done playing it up. Your word actually sucks")
+            break
+        default:
+            setPink(pinkconcerned, "I guess it's okay.")
+            break
+    
+    }
+    
+
+
+    streakcounter = streakcounter + 1
 
     words.push(currentword);
     console.log(words);
@@ -57,19 +112,13 @@ function submit(e) {
     wordinput.value = "";
     playerheader.textContent = "Player " + (player === 1 ? 2 : 1) + ", enter a word that starts with '" + currentword.slice(-1) + "':";
     player = player === 1 ? 2 : 1;
-    e.preventdefault()
-
+    e.preventdefault
 }
 
-function showError(text) {
-    const error = document.getElementById("error")
-    error.classList.remove("hidden-error")
-    error.classList.add("shown-error")
-    setTimeout(() => {
-        error.classList.remove("shown-error")
-        error.classList.add("hidden-error")
-    }, 3000);
+function setPink(image, text) {
+    pinkimage.src = image
     error.textContent = text
+
 }
 
 
