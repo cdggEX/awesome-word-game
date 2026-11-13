@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Document</title>
+    <title>Awesome Word Game</title>
     <script src="last-word.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,12 +12,13 @@
 </head>
 <body>
     <div class="container">
+        <nav style="display: block; justify-content: left;"><a href="/">Rules</a></nav>
         <div class="main-body">
             <h1 style="text-decoration:underline">Last word</h1>
             <h2 id="player-num">Player 1, enter the first word:</h2>
             <h3 id="previous-word"></h3>
             <h3 id="error" class="hidden-error">pink</h3>
-            <img id="pink-img" height="179px" width="164px"src="public/images/164px-Pink_face_wink.gif.webp">
+            <img id="pink-img" class="pink-img" height="179px" width="164px"src="public/images/164px-Pink_face_wink.gif.webp">
             <input type= "text" id="word-input" class ="word-input"></input>
             <button id="submit-btn" class="submit-btn">Submit word</button>
             <button id="undo-btn" class="undo-btn">Undo</button>

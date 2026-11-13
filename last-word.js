@@ -10,9 +10,11 @@ const submitbutton = document.getElementById("submit-btn")
 const worddisplay = document.getElementById("previous-word");
 const undobutton = document.getElementById("undo-btn");
 const pinkimage = document.getElementById("pink-img")
-const error = document.getElementById("error")  
+const error = document.getElementById("error") 
+const body = document.getElementsByTagName('body')
 
 var streakcounter = 0
+var clickcounter = 0
 
 //Images of pink
 const pinkwink = 'public/images/164px-Pink_face_wink.gif.webp'
@@ -21,6 +23,8 @@ const pinkconcerned = 'public/images/Pink_face_concerned.gif'
 const pinkangy = 'public/images/Pink_face_angry.png'
 const pinkhappy = 'public/images/Pink_face_happy.gif'
 const pinksadcry = 'public/images/Pink_face_cry.gif'
+const pinkshocked = 'public/images/Pink_face_shocked.png'
+const pinksadtears = 'public/images/Pink_face_sad.gif'
 
 
 undobutton.addEventListener("click", function() {
@@ -29,7 +33,7 @@ undobutton.addEventListener("click", function() {
         return;
     } 
     else {
-        setPink(pinkconcerned, "Why'd you undo... I liked that word...")
+        setPink(pinksadtears, "Why'd you undo... I liked that word...")
     }
     words.pop();
     if (words.length === 0) {
@@ -37,6 +41,7 @@ undobutton.addEventListener("click", function() {
     } else {
         previousword = words[words.length - 1];
     }
+    streakcounter = 0
     worddisplay.textContent = "Previous word: " + previousword;
     playerheader.textContent = "Player " + (player === 1 ? 2 : 1) + ", enter a word that starts with '" + (previousword ? previousword.slice(-1) : '') + "':";
     player = player === 1 ? 2 : 1;
@@ -51,6 +56,49 @@ document.addEventListener("keyup", function(e) {
         submit()
     }
     e.preventdefault()
+})
+
+pinkimage.addEventListener("click", function() {
+    switch (clickcounter) {
+        case 0:
+            setPink(pinkshocked, "...")
+            break
+        case 1:
+            setPink(pinkshocked, "Don't click me!!")
+            break
+        case 2:
+            setPink(pinkshocked, "I said stop it!!")
+            break
+        case 3:
+            setPink(pinkshocked, "Something terrible will happen if you keep clicking...")
+            break
+        case 4:
+            setPink(pinkshocked, "Okay I lied but it hurts that pointer is really sharp STOP")
+            break
+        case 5:
+            setPink(pinkangy, "I LIED AGAIN HAHA NOW YOU'RE IN FOR IT IF YOU CLICK ME AGAIN")
+            break
+        case 6:
+            setPink(pinkhappy, "3")
+            setTimeout(function() {
+                setPink(pinkhappy, "2")
+                setTimeout(function() {
+                    setPink(pinkhappy, "1")
+                    setTimeout(function() {
+                        setPink(pinkhappy, "0")
+                        setTimeout(function() {
+                            setPink(pinkangy, "PINK MODE ACTIVATED!@!!!!")
+                            setTimeout(function() {
+                            setPink(pinkwink, "Scared you huh?? Just kidding!! Don't do it again though!")
+                            }, 2000)
+                        }, 1000)
+                    }, 1000)
+                }, 1000)
+            }, 1000)
+            
+            break
+    }
+    clickcounter = clickcounter + 1
 })
 
 submitbutton.addEventListener("click", (e) => submit(e))
@@ -98,10 +146,11 @@ function submit(e) {
         default:
             setPink(pinkconcerned, "I guess it's okay.")
             break
-    
     }
     
-
+    if (currentword === "pink") {
+        setPink(pinkhappy, "Thats my favorite word!!")
+    }
 
     streakcounter = streakcounter + 1
 
